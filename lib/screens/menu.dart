@@ -22,8 +22,9 @@ class MyHomePage extends StatelessWidget {
             ),
           ),
         backgroundColor: Colors.indigo,
+        foregroundColor: Colors.white,
       ),
-      endDrawer: const LeftDrawer(),
+      drawer: const LeftDrawer(),
       body: SingleChildScrollView(
         // Widget wrapper yang dapat discroll
         child: Padding(
