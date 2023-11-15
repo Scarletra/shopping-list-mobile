@@ -120,33 +120,32 @@ class _ShopFormPageState extends State<ShopFormPage> {
                             MaterialStateProperty.all(Colors.indigo),
                       ),
                       onPressed: () async {
-                          if (_formKey.currentState!.validate()) {
-                              // Kirim ke Django dan tunggu respons
-                              final response = await request.postJson(
-                              " http://127.0.0.1:8000/create-flutter/",
-                              jsonEncode(<String, String>{
-                                  'name': _name,
-                                  'price': _price.toString(),
-                                  'description': _description,
-                              }));
-                              if (response['status'] == 'success') {
-                                  ScaffoldMessenger.of(context)
-                                      .showSnackBar(const SnackBar(
-                                  content: Text("Produk baru berhasil disimpan!"),
-                                  ));
-                                  Navigator.pushReplacement(
-                                      context,
-                                      MaterialPageRoute(builder: (context) => MyHomePage()),
-                                  );
-                              } else {
-                                  ScaffoldMessenger.of(context)
-                                      .showSnackBar(const SnackBar(
-                                      content:
-                                          Text("Terdapat kesalahan, silakan coba lagi."),
-                                  ));
-                              }
-                          }
-                      },
+                        if (_formKey.currentState!.validate()) {
+                            final response = await request.postJson(
+                            "http://127.0.0.1:8000/create-flutter/",
+                            jsonEncode(<String, String>{
+                                'name': _name,
+                                'price': _price.toString(),
+                                'description': _description,
+                            }));
+                            if (response['status'] == 'success') {
+                                ScaffoldMessenger.of(context)
+                                    .showSnackBar(const SnackBar(
+                                content: Text("Produk baru berhasil disimpan!"),
+                                ));
+                                Navigator.pushReplacement(
+                                    context,
+                                    MaterialPageRoute(builder: (context) => MyHomePage()),
+                                );
+                            } else {
+                                ScaffoldMessenger.of(context)
+                                    .showSnackBar(const SnackBar(
+                                    content:
+                                        Text("Terdapat kesalahan, silakan coba lagi."),
+                                ));
+                            }
+                        }
+                    },
                       child: const Text(
                         "Save",
                         style: TextStyle(color: Colors.white),
